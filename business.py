@@ -39,12 +39,17 @@ def get_astronaut_data():
     people = data["people"]
 
     if data:
-        formatted_data = []
-        formatted_data.append(len(people))
+        amount = 0
+        names = []
+
         for i, p in enumerate(people):
-            formatted_data.append({
-                "name": p["name"]
-            })
+            if p["craft"] == "ISS":
+                names.append(p["name"])
+                amount += 1
+                formatted_data = {
+                    "amount": amount,
+                    "people": names
+                }
     else:
         return "No data available"
     return formatted_data
